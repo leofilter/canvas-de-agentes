@@ -36,9 +36,10 @@ Cada executor é um terminal novo com um agente rodando: ele usa a sua assinatur
 
 ## O que ela não faz
 
-- **Não arrasta as caixas por você.** O Maestri coloca os terminais novos ao lado do maestro e não aceita
-  comando de posição. A skill desenha **3 arranjos com os nomes da sua equipe**, você escolhe um (ou pede outros
-  três) e ela te dá o passo a passo de onde soltar cada caixa.
+- **Não move as caixas com o Maestri aberto.** O aplicativo não aceita comando de posição. A skill desenha
+  **3 arranjos com os nomes da sua equipe**, você escolhe um (ou pede outros três), fecha o Maestri, roda um
+  comando e abre de novo já com tudo no lugar: maestro à esquerda, uma área colorida por frente, estante à direita.
+  Esse passo precisa de Python 3, faz cópia de segurança antes e tem `desfazer`. Foi testado no Windows.
 - **Não apaga nada.** Não remove terminal, nota nem papel.
 - **Não guarda memória entre sessões** nem organiza o seu trabalho com clientes. Ela organiza os agentes.
 

@@ -91,58 +91,82 @@ Nas notas, `\n` vira quebra de linha. Não cole caminho do Windows com barra inv
    recém-aberto às vezes se perde: se voltar vazio, confira com `maestri check "<Codinome>"` e reenvie uma vez.
 3. Ensine o uso em duas linhas: "Fale comigo. Para mandar algo a uma frente, diga 'peça ao <Codinome> para…'."
 
-## 5. Arranjo visual: 3 sugestões, o usuário escolhe
+## 5. Arranjo visual: 3 sugestões, o usuário escolhe, um comando arruma
 
-Diga a verdade primeiro, em uma linha: **o Maestri coloca os terminais novos ao lado do maestro e não aceita
-comando de posição; quem arrasta é o usuário.** Você desenha, ele arrasta.
+O Maestri não aceita comando de posição com o aplicativo aberto. O arranjo é aplicado pelo script
+`organizar.py` desta skill, que o usuário roda **com o Maestri fechado**. Explique isso em uma linha antes de
+mostrar as opções.
 
-Mostre **três arranjos desenhados com os codinomes reais da equipe** (não use nomes genéricos), cada um num
-bloco de código, com uma linha dizendo para quem serve. Adapte ao tamanho da equipe:
+O que o script sempre faz: **maestro à esquerda**, **uma área colorida por frente** (com o nome em cima e os
+terminais em grade dentro) e uma **estante à direita** para notas, fichários e navegadores. O que muda entre
+as sugestões é `linhas` (em quantas linhas as áreas se dividem), `colunas` (quantos terminais lado a lado em
+cada área), a **ordem das áreas** e **quais frentes ficam juntas** na mesma área.
 
-```
-A · ESTRELA — maestro no centro. Bom para até 4 executores; todo mundo a um olhar de distância.
-
-                 [ Executor 1 ]
-  [ Governança ]   [ MAESTRO ]   [ Executor 2 ]
-                 [ Executor 3 ]
-                   [ Apoio ]
-```
+Mostre **três arranjos desenhados com os nomes reais da equipe**, cada um num bloco de código com uma linha
+dizendo para quem serve. Ponto de partida (adapte ao tamanho da equipe):
 
 ```
-B · LINHA DE PRODUÇÃO — o trabalho anda da esquerda para a direita. Bom quando há revisor.
+A · MESA (linhas 2, colunas 2) — equilibrado, cabe numa tela. Bom para 3 a 6 frentes.
 
-  [ Governança ] → [ MAESTRO ] → [ Executor 1 ] → [ Revisor ]
-                                 [ Executor 2 ]
-                                 [ Executor 3 ]
+  [MAESTRO]   [ Site: Atlas  Brisa ]  [ Clientes: Cedro ]      [ ESTANTE ]
+  [Governança][ Marketing: Duna    ]  [ Apoio: Revisor  ]
 ```
 
 ```
-C · ANDARES — uma faixa por tipo. Bom para 5 executores ou tela larga.
+B · FILEIRA (linhas 1, colunas 2) — tudo numa faixa; leitura da esquerda para a direita. Bom para tela larga.
 
-  [ Governança ]        [ MAESTRO ]
-  [ Executor 1 ] [ Executor 2 ] [ Executor 3 ] [ Executor 4 ]
-  [ Apoio ]                              [ Revisor ]
+  [MAESTRO]   [ Site ]  [ Clientes ]  [ Marketing ]  [ Apoio ]      [ ESTANTE ]
+```
+
+```
+C · COLUNAS (linhas 1, colunas 1) — cada frente é uma coluna estreita com os terminais empilhados.
+  Bom quando cada frente tem 2 ou mais terminais.
+
+  [MAESTRO]   [Site ]  [Clientes]  [Marketing]      [ ESTANTE ]
+              [Atlas]  [Cedro   ]  [Duna     ]
+              [Brisa]
 ```
 
 Pergunte: "Qual você quer: A, B ou C? Se nenhum servir, me diga o que mudar e eu desenho outros três."
-Se ele pedir novos, **desenhe arranjos diferentes dos já mostrados** (por exemplo: maestro à esquerda e executores
-em coluna; executores agrupados por cliente; apoio colado no maestro) e pergunte de novo. Repita até ele escolher.
+Se ele pedir novos, **mude de verdade**: outra ordem das áreas, frentes agrupadas de outro jeito (por cliente,
+por tipo de trabalho, apoio junto do maestro), 3 linhas, 3 colunas. Repita até ele escolher.
 
-Depois da escolha, dê o **passo a passo de arrastar**, uma caixa por linha, na ordem em que ele deve mexer —
-primeiro o maestro, depois o fichário, depois cada executor:
+### Depois da escolha
+
+1. Rode `maestri list` e use os **nomes exatos** que ele mostra (o seu está em `You:`).
+2. Grave o plano em `~/canvas-de-agentes-plano.json`:
+
+```json
+{"linhas": 2, "colunas": 2,
+ "maestro": {"nome": "Maestro", "membros": ["<seu nome em You:>", "Governança"]},
+ "areas": [
+   {"nome": "Site", "membros": ["Atlas", "Brisa"]},
+   {"nome": "Clientes", "membros": ["Cedro"]}
+ ]}
+```
+
+   - Cada terminal entra em uma área só. O fichário "Governança" fica com o maestro.
+   - Nota, fichário ou navegador listado numa área vai para a estante com a cor da área.
+   - O que não estiver no plano fica onde está.
+3. **Não rode o script você mesmo**: você está dentro do Maestri e ele recusa com o aplicativo aberto.
+   Entregue ao usuário exatamente estes três passos:
 
 ```
-1. MAESTRO → centro da tela.
-2. Fichário "Governança" → à esquerda do maestro, alinhado pelo topo.
-3. <Codinome 1> → acima do maestro.
-...
+1. Feche o Maestri.
+2. Abra um terminal comum e rode:
+   Windows (PowerShell):  python "$HOME\.claude\skills\canvas-de-agentes\organizar.py"
+   macOS/Linux:           python3 ~/.claude/skills/canvas-de-agentes/organizar.py
+3. Abra o Maestri de novo.
 ```
 
-Feche pedindo um "pronto" e grave o arranjo escolhido (letra e desenho) no fim da nota "Centro de comando",
-para a próxima montagem repetir o mesmo desenho.
+4. Avise, sem alarmar: o script faz uma cópia de segurança antes de gravar; para voltar atrás é o mesmo comando
+   com `desfazer` no fim; ele foi testado no Windows e recusa gravar se o Maestri mudar o formato do arquivo.
+   Precisa de Python 3. **Sem Python, ou se o script recusar:** dê o passo a passo de arrastar à mão, uma caixa
+   por linha (maestro à esquerda, áreas na ordem escolhida, estante à direita).
+5. Grave o arranjo escolhido (letra, linhas, colunas e áreas) no fim da nota "Centro de comando".
 
-**Nunca** tente mudar a posição editando arquivos internos do Maestri: o aplicativo os reescreve enquanto está
-aberto e o formato não é documentado.
+Para mudar o arranjo depois, o usuário pede "troque o arranjo do canvas": você mostra novas opções, regrava o
+plano e ele repete os três passos.
 
 ## Regras
 
