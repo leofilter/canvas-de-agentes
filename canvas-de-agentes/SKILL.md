@@ -89,10 +89,60 @@ Nas notas, `\n` vira quebra de linha. Não cole caminho do Windows com barra inv
 1. Rode `maestri list` e confirme que cada executor e cada nota aparece. Faltou algo: crie só o que faltou.
 2. Mande um "apresente-se em uma linha" para cada executor com `maestri ask`. O primeiro pedido a um terminal
    recém-aberto às vezes se perde: se voltar vazio, confira com `maestri check "<Codinome>"` e reenvie uma vez.
-3. Mostre ao usuário o mapa final e diga a verdade sobre o desenho: **o Maestri posiciona os terminais novos
-   ao seu lado; a posição não é controlada por comando.** Sugira o arranjo e deixe o usuário arrastar:
-   maestro no centro, executores em arco à direita, fichário "Governança" à esquerda, apoio embaixo.
-4. Ensine o uso em duas linhas: "Fale comigo. Para mandar algo a uma frente, diga 'peça ao <Codinome> para…'."
+3. Ensine o uso em duas linhas: "Fale comigo. Para mandar algo a uma frente, diga 'peça ao <Codinome> para…'."
+
+## 5. Arranjo visual: 3 sugestões, o usuário escolhe
+
+Diga a verdade primeiro, em uma linha: **o Maestri coloca os terminais novos ao lado do maestro e não aceita
+comando de posição; quem arrasta é o usuário.** Você desenha, ele arrasta.
+
+Mostre **três arranjos desenhados com os codinomes reais da equipe** (não use nomes genéricos), cada um num
+bloco de código, com uma linha dizendo para quem serve. Adapte ao tamanho da equipe:
+
+```
+A · ESTRELA — maestro no centro. Bom para até 4 executores; todo mundo a um olhar de distância.
+
+                 [ Executor 1 ]
+  [ Governança ]   [ MAESTRO ]   [ Executor 2 ]
+                 [ Executor 3 ]
+                   [ Apoio ]
+```
+
+```
+B · LINHA DE PRODUÇÃO — o trabalho anda da esquerda para a direita. Bom quando há revisor.
+
+  [ Governança ] → [ MAESTRO ] → [ Executor 1 ] → [ Revisor ]
+                                 [ Executor 2 ]
+                                 [ Executor 3 ]
+```
+
+```
+C · ANDARES — uma faixa por tipo. Bom para 5 executores ou tela larga.
+
+  [ Governança ]        [ MAESTRO ]
+  [ Executor 1 ] [ Executor 2 ] [ Executor 3 ] [ Executor 4 ]
+  [ Apoio ]                              [ Revisor ]
+```
+
+Pergunte: "Qual você quer: A, B ou C? Se nenhum servir, me diga o que mudar e eu desenho outros três."
+Se ele pedir novos, **desenhe arranjos diferentes dos já mostrados** (por exemplo: maestro à esquerda e executores
+em coluna; executores agrupados por cliente; apoio colado no maestro) e pergunte de novo. Repita até ele escolher.
+
+Depois da escolha, dê o **passo a passo de arrastar**, uma caixa por linha, na ordem em que ele deve mexer —
+primeiro o maestro, depois o fichário, depois cada executor:
+
+```
+1. MAESTRO → centro da tela.
+2. Fichário "Governança" → à esquerda do maestro, alinhado pelo topo.
+3. <Codinome 1> → acima do maestro.
+...
+```
+
+Feche pedindo um "pronto" e grave o arranjo escolhido (letra e desenho) no fim da nota "Centro de comando",
+para a próxima montagem repetir o mesmo desenho.
+
+**Nunca** tente mudar a posição editando arquivos internos do Maestri: o aplicativo os reescreve enquanto está
+aberto e o formato não é documentado.
 
 ## Regras
 

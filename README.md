@@ -36,8 +36,9 @@ Cada executor é um terminal novo com um agente rodando: ele usa a sua assinatur
 
 ## O que ela não faz
 
-- **Não escolhe a posição das caixas.** O Maestri coloca os terminais novos ao lado do maestro; a skill sugere
-  o arranjo e você arrasta.
+- **Não arrasta as caixas por você.** O Maestri coloca os terminais novos ao lado do maestro e não aceita
+  comando de posição. A skill desenha **3 arranjos com os nomes da sua equipe**, você escolhe um (ou pede outros
+  três) e ela te dá o passo a passo de onde soltar cada caixa.
 - **Não apaga nada.** Não remove terminal, nota nem papel.
 - **Não guarda memória entre sessões** nem organiza o seu trabalho com clientes. Ela organiza os agentes.
 
