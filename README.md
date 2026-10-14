@@ -51,7 +51,7 @@ A skill deixa cada agente sabendo de que frente cuida. Regras, modelos de docume
 
 ## Aviso
 
-Projeto independente, de Leonardo Filter Friedrich (FilterPro). Não é afiliado ao Maestri nem à Anthropic, e
+Projeto independente, de Leonardo Filter Friedrich ([FilterPro](https://filterpro.dev.br) — ferramentas sob medida, automação e [visibilidade nas IAs](https://filterpro.dev.br/visibilidade-nas-ias)). Não é afiliado ao Maestri nem à Anthropic, e
 não distribui código de nenhum dos dois: só usa a linha de comando `maestri` que já vem com o aplicativo.
 
 Licença: MIT.
